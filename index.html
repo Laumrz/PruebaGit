@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" src="css/estilos.css">
+    <title>Horario</title>
+</head>
+
+<body>
+    <div id="fecha"></div>
+    <div id="reloj"></div>
+
+    <script>
+        function actualizarFechaYHora() {
+        var fechaActual = new Date();
+
+      //día y mes
+        var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        var fechaFormateada = fechaActual.toLocaleDateString('es-ES', options);
+
+      //hora, minutos y segundos
+        var hora = fechaActual.getHours();
+        var minutos = fechaActual.getMinutes();
+        var segundos = fechaActual.getSeconds();
+
+      //formatear hora
+        var horaFormateada = hora < 10 ? '0' + hora : hora;
+        var minutosFormateados = minutos < 10 ? '0' + minutos : minutos;
+        var segundosFormateados = segundos < 10 ? '0' + segundos : segundos;
+
+      //mostrar fecha y hora en el documento
+        document.getElementById('fecha').innerHTML = fechaFormateada;
+        document.getElementById('reloj').innerHTML = horaFormateada + ':' + minutosFormateados + ':' + segundosFormateados;
+
+      //actualizar los segundos
+        setTimeout(actualizarFechaYHora, 1000);
+        }
+
+        //iniciar la función 
+        window.onload = function () 
+        {
+            actualizarFechaYHora();
+        };
+    </script>
+
+</body>
+</html>
